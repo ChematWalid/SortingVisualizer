@@ -14,15 +14,15 @@ private:
   std::vector<Rectangle> rectangles;
 public:
   Rectangles() = default;
-  Rectangles(std::vector<Rectangle> rects) : rectangles(rects) {}
-  void addRectangle(Rectangle r) {
+  Rectangles(const std::vector<Rectangle>& rects) : rectangles(rects) {}
+  void addRectangle(const Rectangle& r) {
     rectangles.push_back(r);
   }
   void step(SortingAlgorithm& algorithm) {
     algorithm.step(rectangles);
   }
   void updatePositions(float windowWidth, float windowHeight) {
-        int n = rectangles.size();
+        const size_t n = rectangles.size();
         float barWidth = windowWidth / n;
         for (int i = 0; i < n; ++i) {
           rectangles[i].update();
@@ -31,16 +31,16 @@ public:
         }
   }
   void resetColors() {
-    for (int i = 0; i < rectangles.size(); i++) {
-      rectangles[i].setColor(sf::Color::White);
+    for (auto & rectangle : rectangles) {
+      rectangle.setColor(sf::Color::White);
     }
   }
-  void draw(sf::RenderWindow& window) {
+  void draw(sf::RenderWindow& window) const {
     for (Rectangle r : rectangles) {
       r.draw(window);
     }
   }
-  void update() {
+  void update() const {
     for (Rectangle r : rectangles) {
       r.update();
     }

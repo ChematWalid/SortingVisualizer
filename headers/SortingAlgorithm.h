@@ -61,24 +61,24 @@ private:
 public:
   void step(std::vector<Rectangle>& rectangles) override {
     if (isSorted || rectangles.empty()) return;
-    int n = rectangles.size();
-    rectangles[j].setColor(sf::Color::Red);
-    rectangles[j + 1].setColor(sf::Color::Red);
-    if (rectangles[j].getHeight() < rectangles[minIndex].getHeight()) {
-    minIndex = j;
+      int n = rectangles.size();
+      rectangles[j].setColor(sf::Color::Red);
+      rectangles[j + 1].setColor(sf::Color::Red);
+      if (rectangles[j].getHeight() < rectangles[minIndex].getHeight()) {
+      minIndex = j;
     }
 
     j++;
 
     if (j >= n) {
-    std::swap(rectangles[i], rectangles[minIndex]);
-    i++;
-    j = i;
-    minIndex = i;
+      std::swap(rectangles[i], rectangles[minIndex]);
+      i++;
+      j = i;
+      minIndex = i;
     }
 
     if (i >= n - 1) {
-    isSorted = true;
+      isSorted = true;
     }
   }
   void reset() override {
